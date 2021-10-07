@@ -1,5 +1,10 @@
 package com.promotion;
 
+/**
+ * Holds the result after applying promotions
+ * @author Shailendra
+ *
+ */
 public record PromotionResult(String promotion, int discount, boolean applied) {
 
     public String getPromotion() {

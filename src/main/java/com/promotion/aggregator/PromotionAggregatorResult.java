@@ -1,5 +1,13 @@
 package com.promotion.aggregator;
 
-public class PromotionAggregatorResult {
-
+/**
+ * Holds the final discount
+ * @author Shailendra
+ *
+ */
+public record PromotionAggregatorResult(int discount) {
+    @Override
+    public int discount() {
+        return discount;
+    }
 }
