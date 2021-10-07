@@ -45,4 +45,24 @@ public class PromotionEngineTest {
         Assertions.assertEquals(420, cart.total());
         Assertions.assertEquals(50f, cart.discount());
     }
+	
+	@Test
+    void testScenarioC() {
+        Item a = new Item(Product.A, 50, 3);
+        Item b = new Item(Product.B, 30, 5);
+        Item c = new Item(Product.C, 20, 1);
+        Item d = new Item(Product.D, 15, 1);
+        Cart cart = new Cart();
+        cart.add(a);
+        cart.add(b);
+        cart.add(c);
+        cart.add(d);
+        PromotionEngine promotionEngine = new PromotionEngine.Builder().addPromotion(new ProductAPromotion(true))
+                .addPromotion(new ProductBPromotion(true)).addPromotion(new ProductCAndDPromotion(true))
+                .addPromotionAggregator(new AllPromotionsAppliedAggregator()).build();
+        promotionEngine.apply(cart);
+        Assertions.assertEquals(280, cart.finalPrice());
+        Assertions.assertEquals(335, cart.total());
+        Assertions.assertEquals(55, cart.discount());
+    }
 }
